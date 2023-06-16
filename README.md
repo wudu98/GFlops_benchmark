@@ -4,7 +4,7 @@
 GFlops_benchmark is a benchmark to measure the fp32 peak performance on **aarch64**. (supports NEON and SVE instructions)
 
 ## Installation
-`git clone https://github.com/zhuangbility111/GFlops_benchmark`
+`git clone https://github.com/wudu98/GFlops_benchmark`
 
 ## Dependency
 In this project, `OpenMP` is uesd. So you should make sure there is an `OpenMP` library on your hardware.

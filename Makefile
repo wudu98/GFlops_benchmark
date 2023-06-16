@@ -7,8 +7,8 @@ CC = gcc
 C_FLAGS = -fopenmp
 LD_FLAGS = -fopenmp
 
-NEON = TRUE
-SVE = FALSE
+NEON = FALSE
+SVE = TRUE
 
 ifeq ($(NEON),TRUE)
 	OBJS += kernel_neon.o

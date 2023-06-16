@@ -3,7 +3,7 @@
 #include <omp.h>
 
 #define LOOP (1000000000)
-#define FMA_INS_NUM (32)
+#define FMA_INS_NUM (1)
 
 typedef void (*kernel_func_t)(int);
 
@@ -28,7 +28,7 @@ static void test_kernel_func(kernel_func_t kernel_func, const int threads_num,
     }
     clock_gettime(CLOCK_MONOTONIC_RAW, &end);
     time_used = get_time(&start, &end);
-    printf("perf: %.6lf GFlops\r\n", 1.0 * threads_num * inner_loop_num * ops_per_loop * 1e-9 / time_used);
+    printf("perf: %.6lf GFlops\r\n", 1.0 * threads_num * inner_loop_num * ops_per_loop * 1e-9 / time_used / 128 );
 }
 
 #ifdef __aarch64__
@@ -42,6 +42,7 @@ static void test_kernel_func(kernel_func_t kernel_func, const int threads_num,
 #endif // __aarch64__
 
 int main() {
+    omp_set_max_threads(1);
     int threads_num = omp_get_max_threads();
     int ops_per_loop;
 
